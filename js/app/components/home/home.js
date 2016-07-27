@@ -4,4 +4,8 @@ angular.module('x-com').controller('HomeController', ['$scope', '$rootScope', '$
         $scope.initHome = function () {
 
         };
+
+        $scope.globe = function () {
+            $state.go("globe");
+        };
     }]);

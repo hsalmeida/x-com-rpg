@@ -63,3 +63,23 @@ body {
     color: #97daea;
 }
 
+.globe-fab-container {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: 23px 12px 23px 23px;
+    white-space: nowrap;
+}
+
+.btn-globe {
+    padding: 0;
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.2s ease-in-out;
+}
+
+.dropdown-toggle {
+    cursor: pointer;
+}

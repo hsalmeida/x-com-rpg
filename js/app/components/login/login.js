@@ -31,7 +31,10 @@ angular.module('x-com').controller('LoginController', ['$scope', '$rootScope', '
                     if(users[0]) {
                         var curUsr = users[0];
                         assignCurrentUser(curUsr);
-                        $state.go('home');
+                        curUsr.lastlogin = new Date();
+                        curUsr.$saveOrUpdate().then(function () {
+                            $state.go('home');
+                        });
                     } else {
                         $scope.errorLogin = "Usuário e ou senha inválidos";
                         console.log("no soup for u");

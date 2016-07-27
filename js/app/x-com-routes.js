@@ -17,5 +17,13 @@ angular.module("x-com").config(function ($stateProvider, $urlRouterProvider) {
             data: {
                 requiredlogin: true
             }
+        })
+        .state('globe', {
+            url: "/globe",
+            templateUrl: "views/globe/globe.html",
+            controller: 'GlobeController',
+            data: {
+                requiredlogin: true
+            }
         });
 });
