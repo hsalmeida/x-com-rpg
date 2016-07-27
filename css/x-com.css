@@ -1,0 +1,43 @@
+@font-face {
+    font-family: 'Dharma Gothic Light';
+    src: url(fonts/dharmagothic_light.woff2) format("woff2");
+    font-weight: 400;
+    font-style: normal
+}
+
+body, html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+}
+
+.page-content {
+    padding: 10% 20% 20%;
+}
+
+.page-content h2, label {
+    color: #97daea;
+    font-family: "Dharma Gothic Light", "Pathway Gothic One", Helvetica, Arial, sans-serif;
+}
+
+.page-content label {
+    font-size: 16px;
+}
+
+.logo {
+    max-width: 100%;
+}
+
+.grid {
+    margin: 0 auto;
+}
+
+.grid div {
+    text-align: center;
+}
+
+.btn-login {
+    margin-top: 20px;
+}
