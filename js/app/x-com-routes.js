@@ -9,5 +9,13 @@ angular.module("x-com").config(function ($stateProvider, $urlRouterProvider) {
             data: {
                 requiredlogin: false
             }
+        })
+        .state('home', {
+            url: "/home",
+            templateUrl: "views/home/home.html",
+            controller: 'HomeController',
+            data: {
+                requiredlogin: true
+            }
         });
 });

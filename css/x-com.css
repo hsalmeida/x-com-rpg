@@ -11,6 +11,11 @@ body, html {
 
 body {
     margin: 0;
+    background-image: url(../img/bg_notvideo.jpg);
+    background-position: center;
+    background-repeat: repeat-y;
+    background-size: 100%;
+    background-attachment: fixed;
 }
 
 .page-content {
@@ -41,3 +46,20 @@ body {
 .btn-login {
     margin-top: 20px;
 }
+
+.xcom-navbar {
+    height: 64px;
+}
+
+.xcom-brand {
+    padding: 0 15px;
+}
+
+.resource {
+    color: limegreen;
+}
+
+.resource.engenheiro, .cientista, .intel {
+    color: #97daea;
+}
+
