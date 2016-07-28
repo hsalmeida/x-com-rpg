@@ -1,76 +1,94 @@
-<div class="xcom-navbar">
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#pe-navbar"
-                        aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand xcom-brand" ui-sref="home">
-                    <img ng-src="img/icon_gamewon.png" width="64" height="64">
-                </a>
+<div ng-controller="HomeController" ng-init="initHome()">
+    <div class="xcom-navbar">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#pe-navbar"
+                            aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand xcom-brand" ui-sref="home">
+                        <img ng-src="img/icon_gamewon.png" width="64" height="64">
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="pe-navbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a ui-sref="home"><span class="glyphicon glyphicon-home"></span>&nbsp;Home</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-flask"></span>&nbsp;Pesquisa&nbsp;<span
+                                    class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a ui-sref="home"><i class="fa fa-search"></i>&nbsp;Ver pesquisa</a></li>
+                                <li><a ui-sref="home"><i class="fa fa-check"></i>&nbsp;Realizadas</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-wrench"></span>&nbsp;Engenharia&nbsp;<span
+                                    class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a ui-sref="home"><i class="fa fa-bomb"></i>&nbsp;Campo de Testes</a></li>
+                                <li><a ui-sref="home"><i class="fa fa-plus-square-o"></i>&nbsp;Construir Instalação</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-shield"></span>&nbsp;Arsenal&nbsp;<span
+                                    class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a ui-sref="home"><i class="fa fa-male"></i>&nbsp;Armaduras</a></li>
+                                <li><a ui-sref="home"><i class="fa fa-cogs"></i>&nbsp;Items</a></li>
+                                <li><a ui-sref="home"><i class="fa fa-book"></i>&nbsp;Treinamento</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-star"></span>&nbsp;Comando&nbsp;<span
+                                    class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a ui-sref="home"><i class="fa fa-street-view"></i>&nbsp;Opcao1</a></li>
+                                <li><a ui-sref="home"><i class="fa fa-street-view"></i>&nbsp;Opcao2</a></li>
+                            </ul>
+                        </li>
+                        <li ng-show="isAdmin">
+                            <a class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-eye"></span>&nbsp;Admin&nbsp;<span
+                                    class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a ui-sref="home"><i class="fa fa-street-view"></i>&nbsp;Opcao1</a></li>
+                                <li><a ui-sref="home"><i class="fa fa-street-view"></i>&nbsp;Opcao2</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="collapse navbar-collapse" id="pe-navbar">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a ui-sref="home"><span class="glyphicon glyphicon-home"></span>&nbsp;Home</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-flask"></span>&nbsp;Pesquisa&nbsp;<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a ui-sref="home"><i class="fa fa-search"></i>&nbsp;Ver pesquisa</a></li>
-                            <li><a ui-sref="home"><i class="fa fa-check"></i>&nbsp;Realizadas</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-wrench"></span>&nbsp;Engenharia&nbsp;<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a ui-sref="home"><i class="fa fa-bomb"></i>&nbsp;Campo de Testes</a></li>
-                            <li><a ui-sref="home"><i class="fa fa-plus-square-o"></i>&nbsp;Construir Instalação</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-shield"></span>&nbsp;Arsenal&nbsp;<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a ui-sref="home"><i class="fa fa-male"></i>&nbsp;Armaduras</a></li>
-                            <li><a ui-sref="home"><i class="fa fa-cogs"></i>&nbsp;Items</a></li>
-                            <li><a ui-sref="home"><i class="fa fa-book"></i>&nbsp;Treinamento</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-star"></span>&nbsp;Comando&nbsp;<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a ui-sref="home"><i class="fa fa-street-view"></i>&nbsp;Opcao1</a></li>
-                            <li><a ui-sref="home"><i class="fa fa-street-view"></i>&nbsp;Opcao2</a></li>
-                        </ul>
-                    </li>
-                </ul>
+        </nav>
+    </div>
+    <div class="wow fadeIn" data-wow-duration="2s"
+         style="visibility: visible; animation-duration: 2s; animation-name: fadeIn;">
+        <div class="col-xs-12">
+            <div class="pull-right">
+                <span class="resource">&nbsp;EN.: 0/10&nbsp;<i class="fa fa-flash"></i></span>
+                <span class="resource engenheiro">&nbsp;ENG.: 0&nbsp;<i class="fa fa-wrench"></i></span>
+                <span class="resource cientista">&nbsp;CIEN.: 0&nbsp;<i class="fa fa-flask"></i></span>
+                <span class="resource">&nbsp;LIGAS: 0&nbsp;<i class="fa fa-database"></i></span>
+                <span class="resource">&nbsp;ELER.: 0&nbsp;<i class="fa fa-cubes"></i></span>
+                <span class="resource intel">&nbsp;INTEL.: 0&nbsp;<i class="fa fa-user-secret"></i></span>
+                <span class="resource">&nbsp;SUPR.: 0&nbsp;<i class="fa fa-money"></i></span>
+                <span class="resource">&nbsp;+0&nbsp;<i class="fa fa-sort"></i></span>
             </div>
         </div>
-    </nav>
-</div>
-
-<div class="col-xs-12">
-    <div class="pull-right">
-        <span class="resource">&nbsp;EN.: 0/10&nbsp;<i class="fa fa-flash"></i></span>
-        <span class="resource engenheiro">&nbsp;ENG.: 0&nbsp;<i class="fa fa-wrench"></i></span>
-        <span class="resource cientista">&nbsp;CIEN.: 0&nbsp;<i class="fa fa-flask"></i></span>
-        <span class="resource">&nbsp;LIGAS: 0&nbsp;<i class="fa fa-database"></i></span>
-        <span class="resource">&nbsp;ELER.: 0&nbsp;<i class="fa fa-cubes"></i></span>
-        <span class="resource intel">&nbsp;INTEL.: 0&nbsp;<i class="fa fa-user-secret"></i></span>
-        <span class="resource">&nbsp;SUPR.: 0&nbsp;<i class="fa fa-money"></i></span>
-        <span class="resource">&nbsp;+0&nbsp;<i class="fa fa-sort"></i></span>
-    </div>
-</div>
-<div>
+        <div>
 
 
-    <div class="globe-fab-container">
-        <button class="btn btn-primary btn-globe" ng-click="globe()" tooltip="Mapa">
-            <span class="fa fa-4x fa-globe"></span>
-        </button>
+            <div class="globe-fab-container">
+                <button class="btn btn-primary btn-globe" ng-click="globe()" tooltip="Mapa">
+                    <span class="fa fa-4x fa-globe"></span>
+                </button>
+            </div>
+        </div>
     </div>
 </div>

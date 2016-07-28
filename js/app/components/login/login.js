@@ -18,6 +18,7 @@ angular.module('x-com').controller('LoginController', ['$scope', '$rootScope', '
         }
 
         $scope.login = function () {
+            waitingCircular.show();
             $scope.errorLogin = "";
             var usr = $scope.usuario;
             var pass = $scope.senha;
