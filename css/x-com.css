@@ -126,6 +126,14 @@ body {
     transition: all 0.2s ease-in-out;
 }
 
+.resources-list {
+    min-height: 24px;
+}
+
+.accordion-progress a {
+    cursor: pointer;
+}
+
 .dropdown-toggle {
     cursor: pointer;
 }
