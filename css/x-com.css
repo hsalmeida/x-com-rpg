@@ -138,6 +138,18 @@ body {
     cursor: pointer;
 }
 
+.xcom-map {
+    width: auto;
+    height: auto;
+    display: block;
+    position: absolute;
+    margin-top: 65px;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
 .progress-circular {
     width: 60px;
     height: 60px;
