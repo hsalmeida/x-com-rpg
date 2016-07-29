@@ -20,6 +20,7 @@ body {
 
 .page-content {
     padding: 10% 20% 20%;
+    text-align: center;
 }
 
 .page-content h2, label {
@@ -63,6 +64,51 @@ body {
     color: #97daea;
 }
 
+.base-layout {
+    width: 80vw;
+    margin: auto;
+    height: 26.434782608695652173913043478261vw;
+}
+
+.facility-row {
+    position: relative;
+    width: 100%;
+    height: 25%;
+}
+
+.facility-row:first-child .facility {
+    border-top-color: #269abc;
+}
+
+.facility:first-child {
+    border-left-color: #269abc;
+}
+
+.facility-empty {
+    background-image: url("../img/facility-empty.jpg");
+    background-size: 100% 100%;
+}
+
+.facility {
+    position: relative;
+    display: inline-block;
+    width: 13%;
+    height: 100%;
+    border: 2px dashed transparent;
+    border-bottom-color: #269abc;
+    border-right-color: #269abc;
+}
+
+.facility img {
+    margin: 0;
+    position: absolute;
+}
+
+.facility-object {
+    width: 100%;
+    height: 100%;
+}
+
 .globe-fab-container {
     position: fixed;
     bottom: 0;
@@ -76,7 +122,7 @@ body {
     border-radius: 50%;
     width: 56px;
     height: 56px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     transition: all 0.2s ease-in-out;
 }
 
@@ -89,10 +135,12 @@ body {
     height: 60px;
     position: relative
 }
+
 .progress-circular-center {
     margin-right: auto;
     margin-left: auto
 }
+
 .progress-circular-gap {
     border-top: 2px solid #ff4081;
     position: absolute;
@@ -109,13 +157,16 @@ body {
 .progress-circular-left {
     left: 0
 }
+
 .progress-circular-orange .progress-circular-gap {
     border-top-color: #f89a46
 }
+
 .progress-circular-inline {
     display: inline-block;
     margin-top: 35%
 }
+
 .progress-circular-inner {
     -webkit-animation: pcircular-inner-rotate 5.25s cubic-bezier(.35, 0, .25, 1) infinite;
     animation: pcircular-inner-rotate 5.25s cubic-bezier(.35, 0, .25, 1) infinite;
@@ -124,6 +175,7 @@ body {
     width: 60px;
     will-change: transform
 }
+
 .progress-circular-left,
 .progress-circular-right {
     height: 60px;
@@ -132,9 +184,11 @@ body {
     top: 0;
     width: 30px
 }
+
 .progress-circular-right {
     right: 0
 }
+
 .progress-circular-spinner {
     border: 4px solid #f89a46;
     border-bottom-color: transparent;
@@ -145,32 +199,39 @@ body {
     width: 60px;
     will-change: transform
 }
+
 .progress-circular-left .progress-circular-spinner {
     -webkit-animation: pcircular-spinner-left 1.3125s cubic-bezier(.35, 0, .5, 1) infinite;
     animation: pcircular-spinner-left 1.3125s cubic-bezier(.35, 0, .5, 1) infinite;
     border-right-color: transparent;
     left: 0
 }
+
 .progress-circular-right .progress-circular-spinner {
     -webkit-animation: pcircular-spinner-right 1.3125s cubic-bezier(.35, 0, .5, 1) infinite;
     animation: pcircular-spinner-right 1.3125s cubic-bezier(.35, 0, .5, 1) infinite;
     border-left-color: transparent;
     right: 0
 }
+
 .progress-circular-orange .progress-circular-spinner {
     border-top-color: #f89a46
 }
+
 .progress-circular-orange .progress-circular-left .progress-circular-spinner {
     border-left-color: #f89a46
 }
+
 .progress-circular-orange .progress-circular-right .progress-circular-spinner {
     border-right-color: #f89a46
 }
+
 .progress-circular-wrapper {
     -webkit-animation: pcircular-wrapper-rotate 2.91667s linear infinite;
     animation: pcircular-wrapper-rotate 2.91667s linear infinite;
     will-change: transform
 }
+
 @-webkit-keyframes pcircular-inner-rotate {
     12.5% {
         -webkit-transform: rotate(135deg);
@@ -205,6 +266,7 @@ body {
         transform: rotate(1080deg)
     }
 }
+
 @keyframes pcircular-inner-rotate {
     12.5% {
         -webkit-transform: rotate(135deg);
@@ -239,6 +301,7 @@ body {
         transform: rotate(1080deg)
     }
 }
+
 @-webkit-keyframes pcircular-spinner-left {
     0%, 100% {
         -webkit-transform: rotate(130deg);
@@ -249,6 +312,7 @@ body {
         transform: rotate(-5deg)
     }
 }
+
 @keyframes pcircular-spinner-left {
     0%, 100% {
         -webkit-transform: rotate(130deg);
@@ -259,6 +323,7 @@ body {
         transform: rotate(-5deg)
     }
 }
+
 @-webkit-keyframes pcircular-spinner-right {
     0%, 100% {
         -webkit-transform: rotate(-130deg);
@@ -269,6 +334,7 @@ body {
         transform: rotate(5deg)
     }
 }
+
 @keyframes pcircular-spinner-right {
     0%, 100% {
         -webkit-transform: rotate(-130deg);
@@ -279,12 +345,14 @@ body {
         transform: rotate(5deg)
     }
 }
+
 @-webkit-keyframes pcircular-wrapper-rotate {
     100% {
         -webkit-transform: rotate(360deg);
         transform: rotate(360deg)
     }
 }
+
 @keyframes pcircular-wrapper-rotate {
     100% {
         -webkit-transform: rotate(360deg);
