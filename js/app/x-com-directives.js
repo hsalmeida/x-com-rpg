@@ -26,3 +26,10 @@ angular.module('x-com')
         }
     }
 )
+    .directive('header', function () {
+        return {
+            restrict: 'A',
+            replace: true,
+            templateUrl: 'views/directives/header.html'
+        };
+    });

@@ -9,5 +9,6 @@ angular.module('x-com').controller('GlobeController', ['$scope', '$rootScope', '
                 style: 'mapbox://styles/mapbox/dark-v9',
                 zoom: 3
             });
+            console.log($scope.xcommap);
         };
     }]);
