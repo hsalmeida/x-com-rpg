@@ -9,9 +9,7 @@ angular.module('x-com')
         function link(scope, element, attributes) {
             $animate.leave(element.children().eq(1)).then(
                 function cleanupAfterAnimation() {
-                    // Remove the root directive element.
                     element.remove();
-                    // Clear the closed-over variable references.
                     scope = element = attributes = null;
                 }
             );
