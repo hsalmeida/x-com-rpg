@@ -3,14 +3,14 @@ angular.module('x-com').controller('HomeController', ['$scope', '$rootScope', '$
     function ($scope, $rootScope, $state, Users, $cookies, Campaigns) {
 
         $scope.campanha = {
-            "engenheiros": 0,
-            "cientistas": 0,
+            "engineers": 0,
+            "scientist": 0,
             "elerium": 0,
-            "energia": 0,
+            "energy": 0,
             "max": 10,
-            "ligas": 0,
+            "alloy": 0,
             "intel": 0,
-            "dinheiro": 0,
+            "supplies": 0,
             "income": 0
         };
 
