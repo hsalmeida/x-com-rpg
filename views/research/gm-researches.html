@@ -4,7 +4,17 @@
          style="visibility: visible; animation-duration: 2s; animation-name: fadeIn;">
 
         <div class="row">
-
+            <div class="list-group">
+                <div class="list-group-item active">
+                    <label class="text-uppercase">pesquisas</label>
+                    <div class="pull-right">
+                        <button class="btn btn-success" tooltip-placement="left" ng-click="novaPesquisa()" tooltip="NOVA"><i class="fa fa-plus"></i></button>
+                    </div>
+                </div>
+                <div class="list-group-item" ng-repeat="pesquisa in pesquisas">
+                    {{pesquisa.nome}}
+                </div>
+            </div>
         </div>
     </div>
 </div>

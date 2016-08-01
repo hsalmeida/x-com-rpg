@@ -23,7 +23,7 @@ body {
     text-align: center;
 }
 
-.page-content h2, label {
+.page-content h2,.page-content label {
     color: #97daea;
     font-family: "Dharma Gothic Light", "Pathway Gothic One", Helvetica, Arial, sans-serif;
 }
