@@ -20,6 +20,9 @@ angular.module('x-com')
         return {
             restrict: 'A',
             replace: true,
-            templateUrl: 'views/directives/header.html'
+            templateUrl: 'views/directives/header.html',
+            controller: ['$scope', '$rootScope', function ($scope, $rootScope) {
+                $scope.isAdmin = $rootScope.currentUser.admin;
+            }]
         };
     });

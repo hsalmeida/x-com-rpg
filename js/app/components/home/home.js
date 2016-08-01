@@ -16,7 +16,7 @@ angular.module('x-com').controller('HomeController', ['$scope', '$rootScope', '$
 
         $scope.initHome = function () {
             waitingCircular.show();
-            $scope.isAdmin = $rootScope.currentUser.admin;
+
             var qc = {
                 "users": $rootScope.currentUser._id.$oid
             };

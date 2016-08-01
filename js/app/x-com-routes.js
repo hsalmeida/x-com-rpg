@@ -7,7 +7,8 @@ angular.module("x-com").config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: "views/login/login.html",
             controller: 'LoginController',
             data: {
-                requiredlogin: false
+                requiredlogin: false,
+                requiredGM: false
             }
         })
         .state('home', {
@@ -15,7 +16,8 @@ angular.module("x-com").config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: "views/home/home.html",
             controller: 'HomeController',
             data: {
-                requiredlogin: true
+                requiredlogin: true,
+                requiredGM: false
             }
         })
         .state('globe', {
@@ -23,7 +25,17 @@ angular.module("x-com").config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: "views/globe/globe.html",
             controller: 'GlobeController',
             data: {
-                requiredlogin: true
+                requiredlogin: true,
+                requiredGM: false
+            }
+        })
+        .state('gmresearch', {
+            url: "/gmresearch",
+            templateUrl: "views/research/gm-researches.html",
+            controller: 'GmResearchesController',
+            data: {
+                requiredlogin: true,
+                requiredGM: true
             }
         });
 });
