@@ -23,7 +23,7 @@ angular.module('x-com').controller('GmResearchesController', ['$scope', '$rootSc
                     {name: "Drone", total: 0},
                     {name: "Muton", total: 0},
                     {name: "Muton Elite", total: 0}
-                ]},
+                ]}
         ];
         
         $scope.initGmResearch = function () {
