@@ -7,7 +7,7 @@ angular.module('x-com').controller('GmResearchesController', ['$scope', '$rootSc
             "proxima": "",
             "anterior": "",
             "requisitos": [],
-            "custo": ""
+            "custo": {}
         };
         
         $scope.resources = [
