@@ -29,8 +29,4 @@ angular.module('x-com').controller('HomeController', ['$scope', '$rootScope', '$
 
 
         };
-
-        $scope.globe = function () {
-            $state.go("globe");
-        };
     }]);

@@ -25,4 +25,23 @@ angular.module('x-com')
                 $scope.isAdmin = $rootScope.currentUser.admin;
             }]
         };
+    })
+    .directive('globe', function () {
+        return {
+            restrict: 'A',
+            replace: true,
+            templateUrl: 'views/directives/globe-btn.html',
+            controller: ['$scope', '$state', function ($scope, $state) {
+                $scope.globe = function () {
+                    $state.go("globe");
+                };
+            }]
+        };
+    })
+    .directive('resourcesList', function () {
+        return {
+            restrict: 'A',
+            replace: true,
+            templateUrl: 'views/directives/resources-list.html'
+        };
     });

@@ -29,6 +29,15 @@ angular.module("x-com").config(function ($stateProvider, $urlRouterProvider) {
                 requiredGM: false
             }
         })
+        .state('items', {
+            url: "/items",
+            templateUrl: "views/armory/items.html",
+            controller: 'ItemsController',
+            data: {
+                requiredlogin: true,
+                requiredGM: false
+            }
+        })
         .state('gmresearch', {
             url: "/gmresearch",
             templateUrl: "views/research/gm-researches.html",
