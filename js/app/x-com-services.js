@@ -5,4 +5,7 @@ angular.module("x-com")
     .factory('Campaigns',function($mongolabResourceHttp){
         return $mongolabResourceHttp('campaigns');
     })
+    .factory('Researches',function($mongolabResourceHttp){
+        return $mongolabResourceHttp('researches');
+    })
 ;
