@@ -3,9 +3,11 @@ angular.module('x-com').controller('GmResearchesController', ['$scope', '$rootSc
     function ($scope, $rootScope, $state, Users, $cookies, $modal) {
         $scope.pesquisa = {
             "nome": "",
+            "tipo": "",
             "proxima": "",
             "anterior": "",
-            "requisitos": []
+            "requisitos": [],
+            "custo": ""
         };
         $scope.initGmResearch = function () {
             $scope.pesquisas = [];
@@ -30,6 +32,14 @@ angular.module('x-com').controller('GmResearchesController', ['$scope', '$rootSc
 
 angular.module('x-com').controller('NewGmResearchController', ['$scope', '$rootScope', 'parentScope',
     function ($scope, $rootScope, parentScope) {
+        $scope.pesquisa = {
+            "nome": "",
+            "tipo": "",
+            "proxima": "",
+            "anterior": "",
+            "requisitos": [],
+            "custo": ""
+        };
         $scope.initNovaPesquisa = function () {
 
         };
