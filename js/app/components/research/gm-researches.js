@@ -10,22 +10,21 @@ angular.module('x-com').controller('GmResearchesController', ['$scope', '$rootSc
             "custo": ""
         };
         
-        $scope.resources = {
-        	alloy: 0,
-        	intel: 0,
-        	engineers: 0,
-        	scientist: 0,
-        	supplies: 0,
-        	elerium: 0,
-        	aliens: {
-        		sectoid: 0,
-        		sectoidCommander: 0,
-        		drone: 0,
-        		muton: 0,
-        		mutonElite: 0,
-        		berserker: 0
-        	}
-        }
+        $scope.resources = [
+            {name: "Alloy", total: 0},
+            {name: "Intel", total: 0},
+            {name: "Engineers", total: 0},
+            {name: "Scientists", total: 0},
+            {name: "Supplies", total: 0},
+            {name: "Elerium", total: 0},
+            {name: "Allies", types: [
+                    {name: "Sectoid", total: 0},
+                    {name: "Sectoid Commander", total: 0},
+                    {name: "Drone", total: 0},
+                    {name: "Muton", total: 0},
+                    {name: "Muton Elite", total: 0}
+                ]},
+        ];
         
         $scope.initGmResearch = function () {
             $scope.pesquisas = [];
