@@ -8,4 +8,7 @@ angular.module("x-com")
     .factory('Researches',function($mongolabResourceHttp){
         return $mongolabResourceHttp('researches');
     })
+    .factory('Items',function($mongolabResourceHttp){
+        return $mongolabResourceHttp('items');
+    })
 ;
