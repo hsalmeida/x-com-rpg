@@ -56,7 +56,7 @@ angular.module('x-com').controller('NewGmResearchController', ['$scope', '$rootS
             "proxima": "",
             "anterior": "",
             "requisitos": [],
-            "custo": ""
+            "custo": {}
         };
         $scope.initNovaPesquisa = function () {
 
