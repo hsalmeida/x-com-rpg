@@ -7,14 +7,25 @@
             <div class="list-group">
                 <div class="list-group-item active">
                     <label class="text-uppercase">pesquisas</label>
-                    <div class="pull-right">
-                        <button class="btn btn-success" tooltip-placement="left" ng-click="novaPesquisa()" tooltip="NOVA"><i class="fa fa-plus"></i></button>
-                    </div>
+                    <button class="btn btn-success" tooltip-placement="right" ng-click="novaPesquisa()" tooltip="NOVA">
+                        <i class="fa fa-plus"></i>
+                    </button>
                 </div>
                 <div class="list-group-item" ng-repeat="pesquisa in pesquisas">
                     <div class="panel panel-primary">
-                        <div class="panel-heading">{{pesquisa.name}}</div>
-                        <div class="panel-body">{{pesquisa}}</div>
+                        <div class="panel-heading">{{pesquisa.name}}
+                            &nbsp;
+                            <button class="btn btn-default" tooltip-placement="bottom" tooltip="EDITAR">
+                                <i class="fa fa-pencil-square-o"></i>
+                            </button>
+                            <button class="btn btn-danger" tooltip-placement="bottom" tooltip="EXCLUIR">
+                                <i class="fa fa-remove"></i>
+                            </button>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-lg-12" ng-show="pesquisa.description !== ''">Descrição: {{pesquisa.description}}</div>
+                            <div ng-show="pesquisa.description !== ''"></div>
+                        </div>
                     </div>
                 </div>
             </div>
