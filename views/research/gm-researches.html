@@ -34,13 +34,15 @@
                                     <div class="col-lg-6" ng-show="pesquisa.cost !== ''">
                                         Custo: {{pesquisa.cost}}
                                     </div>
-                                    <div class="col-lg-6" ng-show="pesquisa.prerequisite !== ''">
-                                        Pré Requisito: {{filtraPesquisa(pesquisa.prerequisite)}}
+                                    <div class="col-lg-6" ng-show="pesquisa.prerequisite.length > 0">
+                                        Pré Requisito: <span ng-repeat="prereq in pesquisa.prerequisite">
+                                        {{filtraPesquisa(prereq)}}&nbsp;</span>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-6" ng-show="pesquisa.unlockResearch !== ''">
-                                        Habilita pesquisa: {{filtraPesquisa(pesquisa.unlockResearch)}}
+                                    <div class="col-lg-6" ng-show="pesquisa.unlockResearch.length > 0">
+                                        Habilita pesquisa: <span ng-repeat="ures in pesquisa.unlockResearch">
+                                        {{filtraPesquisa(ures)}}&nbsp;</span>
                                     </div>
                                     <div class="col-lg-6" ng-show="pesquisa.unlockItems.length > 0">
                                         Habilita itens: <span
@@ -48,7 +50,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-6" ng-show="pesquisa.unlockFacilities !== ''">
+                                    <div class="col-lg-6" ng-show="pesquisa.unlockFacilities.length > 0">
                                         Habilita construção: {{pesquisa.unlockFacilities}}
                                     </div>
                                 </div>

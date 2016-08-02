@@ -5,38 +5,92 @@
     <form>
         <div class="form-group">
             <label>Nome</label>
-            <input type="text" ng-model="pesquisa.nome" class="form-control" placeholder="nome da pesquisa">
+            <input type="text" ng-model="newResearch.nome" class="form-control" placeholder="nome da pesquisa">
         </div>
         <div class="form-group">
             <label id="anterior">Pré Requisito</label>
-            <select class="form-control" ng-model="novaPesquisa.prerequisite" ng-options="pesquisa.name for pesquisa in pesquisas">
-                <option value="0">Nenhum</option>
-            </select>
+
+            <div class="input-group">
+                <select class="form-control" ng-model="tempPreReq"
+                        ng-options="pesquisa.name for pesquisa in pesquisas">
+                    <option value="0">Nenhum</option>
+                </select>
+
+                <div class="input-group-btn">
+                    <button class="btn btn-success" ng-click="addPreReq()"><i class="fa fa-plus"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-success" ng-show="newResearch.prerequisite.length > 0">
+            <div class="panel-heading">Prés Requisitos</div>
+            <div class="panel-body">
+                <div class="form-group" ng-repeat="preReq in newResearch.prerequisite">
+                    <div class="row">
+                        <label>{{preReq.name}}</label>
+                        <button class="btn btn-danger" ng-click="removePreReq($index)">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="form-group">
             <label id="proxima">Habilita Pesquisa</label>
-            <select class="form-control" ng-model="novaPesquisa.unlockResearch" ng-options="pesquisa.name for pesquisa in pesquisas">
-                <option value="0">Nenhuma</option>
-            </select>
+
+            <div class="input-group">
+                <select class="form-control" ng-model="tempUnlockRes"
+                        ng-options="pesquisa.name for pesquisa in pesquisas">
+                    <option value="0">Nenhuma</option>
+                </select>
+
+                <div class="input-group-btn">
+                    <button class="btn btn-success" ng-click="addNextRes()"><i class="fa fa-plus"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-success" ng-show="newResearch.unlockResearch.length > 0">
+            <div class="panel-heading">Proximas Pesquisas Habilitadas</div>
+            <div class="panel-body">
+                <div class="form-group" ng-repeat="nextRes in newResearch.unlockResearch">
+                    <div class="row">
+                        <label>{{nextRes.name}}</label>
+                        <button class="btn btn-danger" ng-click="removeNextRes($index)">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="form-group">
-            <label>Pré-requisitos</label>
+            <label>Custos</label>
+
+            <div class="input-group">
+                <select class="form-control" ng-model="tempcost"
+                        ng-options="resource.name group by resource.type for resource in resources">
+                </select>
+
+                <div class="input-group-btn">
+                    <button class="btn btn-success" ng-click="addCost()"><i class="fa fa-plus"></i></button>
+                </div>
+            </div>
         </div>
-        <div class="checkbox">
-            <label>
-                <input type="checkbox">&nbsp;Item
-            </label>
+        <div class="panel panel-success" ng-show="newResearch.cost.length > 0">
+            <div class="panel-heading">Custos Adicionados</div>
+            <div class="panel-body">
+                <div class="form-group" ng-repeat="resource in newResearch.cost">
+                    <div class="row">
+                        <label class="col-xs-2 text-right">{{resource.name}}:&nbsp;</label>
+
+                        <div class="col-xs-10">
+                            <input ng-model="resource.total" type="number">
+                            <button class="btn btn-danger" ng-click="removeCost($index)"><i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-            <label>
-                <input type="checkbox">&nbsp;Alien&nbsp;<input id="vivo" name="estadoAlien" type="radio"><label
-                    for="vivo">vivo</label>&nbsp;<input name="estadoAlien" id="morto" type="radio"><label for="morto">morto</label>
-            </label>
-        </div>
-        <div class="form-group">
-            <label>Custo</label>
-            <input type="text" class="form-control" ng-model="pesquisa.custo" placeholder="custo da pesquisa">
-        </div>
+
         <div class="row">
             <div class="col-lg-12 pull-right">
                 <button class="btn btn-primary">Salvar</button>
