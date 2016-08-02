@@ -1,13 +1,14 @@
 angular.module('x-com').controller('GmResearchesController', ['$scope', '$rootScope', '$state', 'Users', '$cookies',
-    '$modal',
-    function ($scope, $rootScope, $state, Users, $cookies, $modal) {
+    '$modal', 'Researches',
+    function ($scope, $rootScope, $state, Users, $cookies, $modal, Researches) {
         $scope.pesquisa = {
-            "nome": "",
-            "tipo": "",
-            "proxima": "",
-            "anterior": "",
-            "requisitos": [],
-            "custo": {}
+            "name": "",
+            "description": "",
+            "cost": {},
+            "prerequisite": "",
+            "unlockResearch": "",
+            "unlockItems": [],
+            "unlockFacilities": ""
         };
         
         $scope.resources = [
@@ -27,18 +28,16 @@ angular.module('x-com').controller('GmResearchesController', ['$scope', '$rootSc
         ];
         
         $scope.initGmResearch = function () {
-            $scope.pesquisas = [];
+            Researches.all().then(function (pesquisas) {
+                $scope.pesquisas = pesquisas;
+            });
+
         };
 
         $scope.novaPesquisa = function () {
             $modal.open({
                 templateUrl: 'views/research/new-gm-research.html',
                 controller: 'NewGmResearchController',
-                resolve: {
-                    parentScope: function () {
-                        return $scope;
-                    }
-                }
             }).result.then(function () {
                     $scope.reload();
                 }, function () {
@@ -47,17 +46,21 @@ angular.module('x-com').controller('GmResearchesController', ['$scope', '$rootSc
     }]);
 
 
-angular.module('x-com').controller('NewGmResearchController', ['$scope', '$rootScope', 'parentScope',
-    function ($scope, $rootScope, parentScope) {
-        $scope.pesquisa = {
-            "nome": "",
-            "tipo": "",
-            "proxima": "",
-            "anterior": "",
-            "requisitos": [],
-            "custo": {}
+angular.module('x-com').controller('NewGmResearchController', ['$scope', '$rootScope',
+    'Researches',
+    function ($scope, $rootScope, Researches) {
+        $scope.novaPesquisa = {
+            "name": "",
+            "description": "",
+            "cost": "",
+            "prerequisite": "",
+            "unlockResearch": "",
+            "unlockItems": [],
+            "unlockFacilities": ""
         };
         $scope.initNovaPesquisa = function () {
-
+            Researches.all().then(function (pesquisas) {
+                $scope.pesquisas = pesquisas;
+            });
         };
     }]);

@@ -12,7 +12,10 @@
                     </div>
                 </div>
                 <div class="list-group-item" ng-repeat="pesquisa in pesquisas">
-                    {{pesquisa.nome}}
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">{{pesquisa.name}}</div>
+                        <div class="panel-body">{{pesquisa}}</div>
+                    </div>
                 </div>
             </div>
         </div>

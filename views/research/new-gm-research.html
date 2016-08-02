@@ -1,22 +1,22 @@
 <div class="modal-header text-center">
     <h4 class="modal-title">Nova Pesquisa</h4>
 </div>
-<div class="modal-body" ng-init="initNovaPesquisa()">
+<div class="modal-body" ng-controller="NewGmResearchController" ng-init="initNovaPesquisa()">
     <form>
         <div class="form-group">
             <label>Nome</label>
             <input type="text" ng-model="pesquisa.nome" class="form-control" placeholder="nome da pesquisa">
         </div>
         <div class="form-group">
-            <label id="anterior">Anterior</label>
-            <select class="form-control">
-                <option>uma pesquisa</option>
+            <label id="anterior">Pré Requisito</label>
+            <select class="form-control" ng-model="novaPesquisa.prerequisite" ng-options="pesquisa.name for pesquisa in pesquisas">
+                <option value="0">Nenhum</option>
             </select>
         </div>
         <div class="form-group">
-            <label id="proxima">Proxima</label>
-            <select class="form-control">
-                <option>uma pesquisa</option>
+            <label id="proxima">Habilita Pesquisa</label>
+            <select class="form-control" ng-model="novaPesquisa.unlockResearch" ng-options="pesquisa.name for pesquisa in pesquisas">
+                <option value="0">Nenhuma</option>
             </select>
         </div>
         <div class="form-group">
@@ -29,13 +29,20 @@
         </div>
         <div class="form-group">
             <label>
-                <input type="checkbox">&nbsp;Alien&nbsp;<input id="vivo" name="estadoAlien" type="radio"><label for="vivo">vivo</label>&nbsp;<input name="estadoAlien" id="morto" type="radio"><label for="morto">morto</label>
+                <input type="checkbox">&nbsp;Alien&nbsp;<input id="vivo" name="estadoAlien" type="radio"><label
+                    for="vivo">vivo</label>&nbsp;<input name="estadoAlien" id="morto" type="radio"><label for="morto">morto</label>
             </label>
         </div>
         <div class="form-group">
             <label>Custo</label>
             <input type="text" class="form-control" ng-model="pesquisa.custo" placeholder="custo da pesquisa">
         </div>
-        <button class="btn btn-primary">Salvar</button><button class="btn btn-danger">Cancelar</button>
+        <div class="row">
+            <div class="col-lg-12 pull-right">
+                <button class="btn btn-primary">Salvar</button>
+                &nbsp;
+                <button class="btn btn-danger">Cancelar</button>
+            </div>
+        </div>
     </form>
 </div>
