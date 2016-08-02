@@ -44,47 +44,54 @@ angular.module('x-com').controller('NewGmResearchController', ['$scope', '$rootS
         $scope.tempcost = {};
         $scope.tempPreReq = {};
         $scope.tempUnlockRes = {};
+        $scope.tempItem = "";
+        $scope.tempFacilitie = "";
 
-        $scope.addPreReq = function () {
-            if($scope.tempPreReq) {
-                if($.inArray($scope.tempPreReq, $scope.newResearch.prerequisite) === -1) {
-                    $scope.newResearch.prerequisite.push($scope.tempPreReq);
+        $scope.removeFromForm = function (index, obj) {
+            $scope.newResearch[obj].splice(index, 1);
+        };
+
+        $scope.addToForm = function (temp, obj) {
+            if ($scope[temp]) {
+                if ($.inArray($scope[temp], $scope.newResearch[obj]) === -1) {
+                    $scope.newResearch[obj].push($scope[temp]);
                 }
             }
-        };
-
-        $scope.removePreReq = function (index) {
-            $scope.newResearch.prerequisite.splice(index, 1);
-        };
-
-        $scope.addNextRes = function () {
-            if($scope.tempUnlockRes) {
-                if($.inArray($scope.tempUnlockRes, $scope.newResearch.unlockResearch) === -1) {
-                    $scope.newResearch.unlockResearch.push($scope.tempUnlockRes);
-                }
-            }
-        };
-
-        $scope.removeNextRes = function (index) {
-            $scope.newResearch.unlockResearch.splice(index, 1);
-        };
-
-        $scope.addCost = function () {
-            if($scope.tempcost) {
-                if($.inArray($scope.tempcost, $scope.newResearch.cost) === -1) {
-                    $scope.newResearch.cost.push($scope.tempcost);
-                }
-            }
-        };
-
-        $scope.removeCost = function (index) {
-            $scope.newResearch.cost.splice(index, 1);
         };
 
         $scope.initNovaPesquisa = function () {
-            $scope.newResearch = DefaultObjects.researchObj;
+            $scope.newResearch = angular.copy(DefaultObjects.researchObj);
             Researches.all().then(function (pesquisas) {
                 $scope.pesquisas = pesquisas;
             });
+        };
+
+        $scope.saveNew = function () {
+
+            if ($scope.newResearch.name !== '') {
+                var researchDB = new Researches();
+                researchDB = angular.merge({}, researchDB, $scope.newResearch);
+                researchDB.prerequisite = ajustaListasPreReqUnlocks('prerequisite', researchDB);
+                researchDB.unlockResearch = ajustaListasPreReqUnlocks('unlockResearch', researchDB);
+
+                console.log(researchDB);
+            }
+        };
+
+        function ajustaListasPreReqUnlocks(atributo, obj) {
+            var retlista = [];
+            var lista = obj[atributo];
+            if (lista.length > 0) {
+                for (var i = 0; i < lista.length; i++) {
+                    if (lista[i]._id) {
+                        retlista.push(lista[i]._id.$oid);
+                    }
+                }
+            }
+            return retlista;
+        }
+
+        $scope.cancel = function () {
+            $scope.$dismiss();
         };
     }]);

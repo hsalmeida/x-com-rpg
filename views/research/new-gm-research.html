@@ -5,7 +5,13 @@
     <form>
         <div class="form-group">
             <label>Nome</label>
-            <input type="text" ng-model="newResearch.nome" class="form-control" placeholder="nome da pesquisa">
+            <input type="text" ng-model="newResearch.name" class="form-control" placeholder="nome da pesquisa">
+        </div>
+        <div class="form-group">
+            <label>Descrição</label>
+        </div>
+        <div class="form-group">
+            <textarea class="form-control" ng-model="newResearch.description"></textarea>
         </div>
         <div class="form-group">
             <label id="anterior">Pré Requisito</label>
@@ -13,25 +19,22 @@
             <div class="input-group">
                 <select class="form-control" ng-model="tempPreReq"
                         ng-options="pesquisa.name for pesquisa in pesquisas">
-                    <option value="0">Nenhum</option>
+                    <option value="">Nenhum</option>
                 </select>
 
                 <div class="input-group-btn">
-                    <button class="btn btn-success" ng-click="addPreReq()"><i class="fa fa-plus"></i></button>
+                    <button class="btn btn-success" ng-click="addToForm('tempPreReq','prerequisite')"><i
+                            class="fa fa-plus"></i></button>
                 </div>
             </div>
         </div>
         <div class="panel panel-success" ng-show="newResearch.prerequisite.length > 0">
-            <div class="panel-heading">Prés Requisitos</div>
             <div class="panel-body">
-                <div class="form-group" ng-repeat="preReq in newResearch.prerequisite">
-                    <div class="row">
-                        <label>{{preReq.name}}</label>
-                        <button class="btn btn-danger" ng-click="removePreReq($index)">
-                            <i class="fa fa-minus"></i>
-                        </button>
-                    </div>
-                </div>
+                <span class="tag label label-default" ng-repeat="preReq in newResearch.prerequisite">
+                    <span>{{preReq.name}}</span>
+                    <a ng-click="removeFromForm($index, 'prerequisite')"><i
+                            class="remove glyphicon glyphicon-remove-sign glyphicon-white"></i></a>
+                </span>
             </div>
         </div>
         <div class="form-group">
@@ -40,27 +43,69 @@
             <div class="input-group">
                 <select class="form-control" ng-model="tempUnlockRes"
                         ng-options="pesquisa.name for pesquisa in pesquisas">
-                    <option value="0">Nenhuma</option>
+                    <option value="">Nenhuma</option>
                 </select>
 
                 <div class="input-group-btn">
-                    <button class="btn btn-success" ng-click="addNextRes()"><i class="fa fa-plus"></i></button>
+                    <button class="btn btn-success" ng-click="addToForm('tempUnlockRes','unlockResearch')"><i
+                            class="fa fa-plus"></i></button>
                 </div>
             </div>
         </div>
         <div class="panel panel-success" ng-show="newResearch.unlockResearch.length > 0">
-            <div class="panel-heading">Proximas Pesquisas Habilitadas</div>
             <div class="panel-body">
-                <div class="form-group" ng-repeat="nextRes in newResearch.unlockResearch">
-                    <div class="row">
-                        <label>{{nextRes.name}}</label>
-                        <button class="btn btn-danger" ng-click="removeNextRes($index)">
-                            <i class="fa fa-minus"></i>
-                        </button>
-                    </div>
+                <span class="tag label label-default" ng-repeat="nextRes in newResearch.unlockResearch">
+                    <span>{{nextRes.name}}</span>
+                    <a ng-click="removeFromForm($index, 'unlockResearch')"><i
+                            class="remove glyphicon glyphicon-remove-sign glyphicon-white"></i></a>
+                </span>
+            </div>
+        </div>
+
+        <div>
+            <label>Habilita Itens</label>
+
+            <div class="input-group">
+                <input class="form-control" ng-model="tempItem" type="text" placeholder="Nome do Item">
+
+                <div class="input-group-btn">
+                    <button class="btn btn-success" ng-click="addToForm('tempItem','unlockItems')"><i
+                            class="fa fa-plus"></i></button>
                 </div>
             </div>
         </div>
+        <div class="panel panel-success" ng-show="newResearch.unlockItems.length > 0">
+            <div class="panel-body">
+                <span class="tag label label-default" ng-repeat="item in newResearch.unlockItems">
+                    <span>{{item}}</span>
+                    <a ng-click="removeFromForm($index, 'unlockItems')"><i
+                            class="remove glyphicon glyphicon-remove-sign glyphicon-white"></i></a>
+                </span>
+            </div>
+        </div>
+
+        <div>
+            <label>Habilita Construção</label>
+
+            <div class="input-group">
+                <input class="form-control" ng-model="tempFacilitie" type="text" placeholder="Nome da Construção">
+
+                <div class="input-group-btn">
+                    <button class="btn btn-success" ng-click="addToForm('tempFacilitie','unlockFacilities')"><i
+                            class="fa fa-plus"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-success" ng-show="newResearch.unlockFacilities.length > 0">
+            <div class="panel-body">
+                <span class="tag label label-default" ng-repeat="facilitie in newResearch.unlockFacilities">
+                    <span>{{facilitie}}</span>
+                    <a ng-click="removeFromForm($index, 'unlockFacilities')"><i
+                            class="remove glyphicon glyphicon-remove-sign glyphicon-white"></i></a>
+                </span>
+            </div>
+        </div>
+
         <div class="form-group">
             <label>Custos</label>
 
@@ -70,7 +115,8 @@
                 </select>
 
                 <div class="input-group-btn">
-                    <button class="btn btn-success" ng-click="addCost()"><i class="fa fa-plus"></i></button>
+                    <button class="btn btn-success" ng-click="addToForm('tempcost','cost')"><i class="fa fa-plus"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -83,7 +129,8 @@
 
                         <div class="col-xs-10">
                             <input ng-model="resource.total" type="number">
-                            <button class="btn btn-danger" ng-click="removeCost($index)"><i class="fa fa-minus"></i>
+                            <button class="btn btn-danger" ng-click="removeFromForm($index, 'cost')"><i
+                                    class="fa fa-minus"></i>
                             </button>
                         </div>
                     </div>
@@ -93,9 +140,9 @@
 
         <div class="row">
             <div class="col-lg-12 pull-right">
-                <button class="btn btn-primary">Salvar</button>
+                <button class="btn btn-primary" ng-click="saveNew()">Salvar</button>
                 &nbsp;
-                <button class="btn btn-danger">Cancelar</button>
+                <button class="btn btn-danger" ng-click="cancel()">Cancelar</button>
             </div>
         </div>
     </form>
