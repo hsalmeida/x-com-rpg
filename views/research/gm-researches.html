@@ -4,27 +4,55 @@
          style="visibility: visible; animation-duration: 2s; animation-name: fadeIn;">
 
         <div class="row">
-            <div class="list-group">
-                <div class="list-group-item active">
-                    <label class="text-uppercase">pesquisas</label>
-                    <button class="btn btn-success" tooltip-placement="right" ng-click="novaPesquisa()" tooltip="NOVA">
-                        <i class="fa fa-plus"></i>
-                    </button>
-                </div>
-                <div class="list-group-item" ng-repeat="pesquisa in pesquisas">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">{{pesquisa.name}}
-                            &nbsp;
-                            <button class="btn btn-default" tooltip-placement="bottom" tooltip="EDITAR">
-                                <i class="fa fa-pencil-square-o"></i>
-                            </button>
-                            <button class="btn btn-danger" tooltip-placement="bottom" tooltip="EXCLUIR">
-                                <i class="fa fa-remove"></i>
-                            </button>
-                        </div>
-                        <div class="panel-body">
-                            <div class="col-lg-12" ng-show="pesquisa.description !== ''">Descrição: {{pesquisa.description}}</div>
-                            <div ng-show="pesquisa.description !== ''"></div>
+            <div class="col-lg-12">
+                <div class="list-group">
+                    <div class="list-group-item active">
+                        <label class="text-uppercase">pesquisas</label>
+                        <button class="btn btn-success" tooltip-placement="right" ng-click="novaPesquisa()"
+                                tooltip="NOVA">
+                            <i class="fa fa-plus"></i>
+                        </button>
+                    </div>
+                    <div class="list-group-item" ng-repeat="pesquisa in pesquisas">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">{{pesquisa.name}}
+                                &nbsp;
+                                <button class="btn btn-default" tooltip-placement="bottom" tooltip="EDITAR">
+                                    <i class="fa fa-pencil-square-o"></i>
+                                </button>
+                                <button class="btn btn-danger" tooltip-placement="bottom" tooltip="EXCLUIR">
+                                    <i class="fa fa-remove"></i>
+                                </button>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-12" ng-show="pesquisa.description !== ''">
+                                        Descrição: {{pesquisa.description}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6" ng-show="pesquisa.cost !== ''">
+                                        Custo: {{pesquisa.cost}}
+                                    </div>
+                                    <div class="col-lg-6" ng-show="pesquisa.prerequisite !== ''">
+                                        Pré Requisito: {{filtraPesquisa(pesquisa.prerequisite)}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6" ng-show="pesquisa.unlockResearch !== ''">
+                                        Habilita pesquisa: {{filtraPesquisa(pesquisa.unlockResearch)}}
+                                    </div>
+                                    <div class="col-lg-6" ng-show="pesquisa.unlockItems.length > 0">
+                                        Habilita itens: <span
+                                            ng-repeat="item in pesquisa.unlockItems">{{item}}&nbsp;</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6" ng-show="pesquisa.unlockFacilities !== ''">
+                                        Habilita construção: {{pesquisa.unlockFacilities}}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

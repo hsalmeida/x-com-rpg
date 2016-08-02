@@ -1,6 +1,19 @@
 angular.module('x-com').controller('GmResearchesController', ['$scope', '$rootScope', '$state', 'Users', '$cookies',
-    '$modal', 'Researches',
-    function ($scope, $rootScope, $state, Users, $cookies, $modal, Researches) {
+    '$modal', 'Researches', '$filter',
+    function ($scope, $rootScope, $state, Users, $cookies, $modal, Researches, $filter) {
+        $scope.filtraPesquisa = function (input) {
+            var filtro = $filter('filter')($scope.pesquisas, input, function (a, b) {
+                if(a && a._id) {
+                    return a._id.$oid === b;
+                }
+            });
+            if(filtro.length > 0) {
+                return filtro[0].name
+            } else {
+                return "";
+            }
+        };
+
         $scope.pesquisa = {
             "name": "",
             "description": "",
