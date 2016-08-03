@@ -27,12 +27,12 @@ angular.module('x-com').controller('GmResearchesController', ['$scope', '$rootSc
         };
 
         $scope.novaPesquisa = function () {
-            var researchId = 0;
+            var researchId = "";
             $uibModal.open({
                 templateUrl: 'views/research/new-gm-research.html',
                 controller: 'GmResearchControllerDialog',
                 resolve: {
-                    researchId: function () {
+                    researchOid: function () {
                         return researchId;
                     }
                 }
@@ -48,67 +48,100 @@ angular.module('x-com').controller('GmResearchesController', ['$scope', '$rootSc
                 templateUrl: 'views/research/edit-gm-research.html',
                 controller: 'GmResearchControllerDialog',
                 resolve: {
-                    researchId: function () {
+                    researchOid: function () {
                         return researchId;
                     }
                 }
             }).result.then(function () {
-                    $scope.reload();
+                    $state.reload();
                 }, function () {
                 });
         };
 
     }]);
 
-angular.module('x-com').controller('GmResearchControllerDialog', ['$scope', '$rootScope',
-    'Researches', 'DefaultObjects', 'Research', 'researchId',
-    function ($scope, $rootScope, Researches, DefaultObjects, Research, researchId) {
-        $scope.newResearch = new Research();
-        $scope.resources = DefaultObjects.resourceObj;
-        $scope.tempcost = {};
-        $scope.tempPreReq = {};
-        $scope.tempUnlockRes = {};
-        $scope.tempItem = "";
-        $scope.tempFacilitie = "";
-        Researches.all().then(function (pesquisas) {
-            $scope.pesquisas = pesquisas;
-        });
+angular.module('x-com').controller('GmResearchControllerDialog',
+    ['$scope', 'Researches', 'DefaultObjects', 'Research', 'researchOid', '$filter',
+    function ($scope, Researches, DefaultObjects, Research, researchOid, $filter) {
+        function initForm () {
+            getResearches();
+            $scope.newResearch = new Research();
+            $scope.resources = DefaultObjects.resourceObj;
+
+            $scope.data = {
+                tempcost: {},
+                tempPreReq: {},
+                tempUnlockRes: {},
+                tempItem: "",
+                tempFacilitie: ""
+            };
+        }
+
+        function getResearches() {
+            Researches.all().then(function (pesquisas) {
+                $scope.pesquisas = pesquisas;
+            });
+        }
 
         $scope.removeFromForm = function (index, obj) {
             $scope.newResearch[obj].splice(index, 1);
         };
 
         $scope.addToForm = function (temp, obj) {
-            if ($scope[temp]) {
+            console.log($scope.data[temp]);
+            if ($scope.data[temp]) {
                 if ($.inArray($scope[temp], $scope.newResearch[obj]) === -1) {
-                    $scope.newResearch[obj].push($scope[temp]);
+                    $scope.newResearch[obj].push($scope.data[temp]);
                 }
             }
         };
 
         $scope.initEditResearchDialog = function () {
-            Researches.getById(researchId).then(function (pesquisa) {
+            initForm();
+            Researches.getById(researchOid).then(function (pesquisa) {
+                pesquisa.prerequisite = preReqUnlocksToList('prerequisite', pesquisa);
+                pesquisa.unlockResearch = preReqUnlocksToList('unlockResearch', pesquisa);
                 $scope.newResearch = pesquisa;
-                console.log($scope.newResearch);
             });
         };
 
         $scope.initResearchDialog = function () {
+            initForm();
             $scope.newResearch = new Research();
-
         };
 
-        $scope.saveNew = function () {
+        $scope.saveResearch = function () {
 
             if ($scope.newResearch.name !== '') {
                 var researchDB = new Researches();
-                researchDB = angular.merge({}, researchDB, $scope.newResearch);
+                researchDB = angular.merge(researchDB, $scope.newResearch);
                 researchDB.prerequisite = ajustaListasPreReqUnlocks('prerequisite', researchDB);
                 researchDB.unlockResearch = ajustaListasPreReqUnlocks('unlockResearch', researchDB);
-
-                console.log(researchDB);
+                waitingCircular.show();
+                researchDB.$saveOrUpdate().then(function () {
+                    waitingCircular.hide();
+                    $scope.$close('ok');
+                });
             }
         };
+
+        function preReqUnlocksToList(atributo, obj) {
+            var retlista = [];
+            var lista = obj[atributo];
+            if (lista.length > 0) {
+                for (var i = 0; i < lista.length; i++) {
+                    var filtro = $filter('filter')($scope.pesquisas, lista[i], function (a, b) {
+                        if (a && a._id) {
+                            return a._id.$oid === b;
+                        }
+                    });
+                    if(filtro && filtro.length > 0) {
+                        retlista.push(filtro[0]);
+                    }
+                }
+            }
+            return retlista;
+        }
 
         function ajustaListasPreReqUnlocks(atributo, obj) {
             var retlista = [];
@@ -124,6 +157,6 @@ angular.module('x-com').controller('GmResearchControllerDialog', ['$scope', '$ro
         }
 
         $scope.cancel = function () {
-            $scope.$dismiss();
+            $scope.$dismiss('cancel');
         };
     }]);
