@@ -2,7 +2,7 @@ var waitingCircular = waitingCircular || (function ($) {
         'use strict';
 
         // Creating modal dialog's DOM
-        var $dialog = $('<div class="modal fade static" id="loadModal" data-backdrop="static">' +
+        var $dialog = $('<div class="modal fade static" id="loadModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">' +
             '<div class="modal-dialog text-center" role="document">' +
             '<div class="progress-circular progress-circular-inline progress-circular-orange">' +
             '<div class="progress-circular-wrapper">' +

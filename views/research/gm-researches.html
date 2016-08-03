@@ -20,7 +20,7 @@
                                 <button class="btn btn-default" ng-click="editResearch(pesquisa)" tooltip-placement="bottom" tooltip="EDITAR">
                                     <i class="fa fa-pencil-square-o"></i>
                                 </button>
-                                <button class="btn btn-danger" tooltip-placement="bottom" tooltip="EXCLUIR">
+                                <button class="btn btn-danger" ng-click="deleteResearch(pesquisa)" tooltip-placement="bottom" tooltip="EXCLUIR">
                                     <i class="fa fa-remove"></i>
                                 </button>
                             </div>
@@ -32,7 +32,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6" ng-show="pesquisa.cost.length > 0">
-                                        Custo: <span ng-repeat="cost in pesquisa.cost">{{cost.name}} ( {{cost.total}} )</span>
+                                        Custo: <span ng-repeat="cost in pesquisa.cost">{{cost.name}} ( {{cost.total}} )&nbsp;</span>
                                     </div>
                                     <div class="col-lg-6" ng-show="pesquisa.prerequisite.length > 0">
                                         Pré Requisito: <span ng-repeat="prereq in pesquisa.prerequisite">
@@ -51,7 +51,8 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6" ng-show="pesquisa.unlockFacilities.length > 0">
-                                        Habilita construção: {{pesquisa.unlockFacilities}}
+                                        Habilita construção: <span
+                                            ng-repeat="facilit in pesquisa.unlockFacilities">{{facilit}}&nbsp;</span>
                                     </div>
                                 </div>
                             </div>
