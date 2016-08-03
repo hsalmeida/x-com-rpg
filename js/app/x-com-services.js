@@ -11,6 +11,18 @@ angular.module("x-com")
     .factory('Items', function ($mongolabResourceHttp) {
         return $mongolabResourceHttp('items');
     })
+    .factory('Research', function () {
+        function Research() {
+            this.name = "";
+            this.description = "";
+            this.cost = [];
+            this.prerequisite = [];
+            this.unlockResearch = [];
+            this.unlockItems = [];
+            this.unlockFacilities = [];
+        }
+        return ( Research );
+    })
     .factory('DefaultObjects', function () {
         return {
             "resourceObj": [
@@ -57,15 +69,6 @@ angular.module("x-com")
                 {name: "ADVENT Officer", total: 0, type: "Alien"},
                 {name: "ADVENT Stun Lancer", total: 0, type: "Alien"},
                 {name: "ADVENT Shieldbearer", total: 0, type: "Alien"}
-            ],
-            "researchObj": {
-                "name": "",
-                "description": "",
-                "cost": [],
-                "prerequisite": [],
-                "unlockResearch": [],
-                "unlockItems": [],
-                "unlockFacilities": []
-            }
+            ]
         };
     });

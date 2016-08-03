@@ -1,6 +1,6 @@
 angular.module('x-com').controller('GmResearchesController', ['$scope', '$rootScope', '$state', 'Users', '$cookies',
-    '$modal', 'Researches', '$filter', 'DefaultObjects',
-    function ($scope, $rootScope, $state, Users, $cookies, $modal, Researches, $filter, DefaultObjects) {
+    '$uibModal', 'Researches', '$filter', 'DefaultObjects', 'Research',
+    function ($scope, $rootScope, $state, Users, $cookies, $uibModal, Researches, $filter, DefaultObjects, Research) {
         $scope.filtraPesquisa = function (input) {
             var filtro = $filter('filter')($scope.pesquisas, input, function (a, b) {
                 if (a && a._id) {
@@ -14,38 +14,65 @@ angular.module('x-com').controller('GmResearchesController', ['$scope', '$rootSc
             }
         };
 
-        $scope.pesquisa = DefaultObjects.researchObj;
+        $scope.pesquisa = new Research();
         $scope.resources = DefaultObjects.resourceObj;
 
         $scope.initGmResearch = function () {
+            waitingCircular.show();
             Researches.all().then(function (pesquisas) {
                 $scope.pesquisas = pesquisas;
+                waitingCircular.hide();
             });
 
         };
 
         $scope.novaPesquisa = function () {
-            $modal.open({
+            var researchId = 0;
+            $uibModal.open({
                 templateUrl: 'views/research/new-gm-research.html',
-                controller: 'NewGmResearchController'
+                controller: 'GmResearchControllerDialog',
+                resolve: {
+                    researchId: function () {
+                        return researchId;
+                    }
+                }
             }).result.then(function () {
                     $scope.reload();
                 }, function () {
                 });
         };
+
+        $scope.editResearch = function (pesquisa) {
+            var researchId = pesquisa._id.$oid;
+            $uibModal.open({
+                templateUrl: 'views/research/edit-gm-research.html',
+                controller: 'GmResearchControllerDialog',
+                resolve: {
+                    researchId: function () {
+                        return researchId;
+                    }
+                }
+            }).result.then(function () {
+                    $scope.reload();
+                }, function () {
+                });
+        };
+
     }]);
 
-
-angular.module('x-com').controller('NewGmResearchController', ['$scope', '$rootScope',
-    'Researches', 'DefaultObjects',
-    function ($scope, $rootScope, Researches, DefaultObjects) {
-        $scope.newResearch = DefaultObjects.researchObj;
+angular.module('x-com').controller('GmResearchControllerDialog', ['$scope', '$rootScope',
+    'Researches', 'DefaultObjects', 'Research', 'researchId',
+    function ($scope, $rootScope, Researches, DefaultObjects, Research, researchId) {
+        $scope.newResearch = new Research();
         $scope.resources = DefaultObjects.resourceObj;
         $scope.tempcost = {};
         $scope.tempPreReq = {};
         $scope.tempUnlockRes = {};
         $scope.tempItem = "";
         $scope.tempFacilitie = "";
+        Researches.all().then(function (pesquisas) {
+            $scope.pesquisas = pesquisas;
+        });
 
         $scope.removeFromForm = function (index, obj) {
             $scope.newResearch[obj].splice(index, 1);
@@ -59,11 +86,16 @@ angular.module('x-com').controller('NewGmResearchController', ['$scope', '$rootS
             }
         };
 
-        $scope.initNovaPesquisa = function () {
-            $scope.newResearch = angular.copy(DefaultObjects.researchObj);
-            Researches.all().then(function (pesquisas) {
-                $scope.pesquisas = pesquisas;
+        $scope.initEditResearchDialog = function () {
+            Researches.getById(researchId).then(function (pesquisa) {
+                $scope.newResearch = pesquisa;
+                console.log($scope.newResearch);
             });
+        };
+
+        $scope.initResearchDialog = function () {
+            $scope.newResearch = new Research();
+
         };
 
         $scope.saveNew = function () {
