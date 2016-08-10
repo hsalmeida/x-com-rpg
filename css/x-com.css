@@ -14,6 +14,18 @@ body {
     background-attachment: fixed;
 }
 
+.huge {
+    font-size: 40px;
+}
+
+.classe-header {
+    color: #97daea;
+}
+
+.classe-icon {
+    width: 100px;
+}
+
 .page-content {
     padding: 10% 20% 20%;
     text-align: center;

@@ -11,6 +11,9 @@ angular.module("x-com")
     .factory('Items', function ($mongolabResourceHttp) {
         return $mongolabResourceHttp('items');
     })
+    .factory('Classes', function ($mongolabResourceHttp) {
+        return $mongolabResourceHttp('classes');
+    })
     .factory('Research', function () {
         function Research() {
             this.name = "";

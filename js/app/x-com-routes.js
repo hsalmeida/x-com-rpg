@@ -38,6 +38,24 @@ angular.module("x-com").config(function ($stateProvider, $urlRouterProvider) {
                 requiredGM: false
             }
         })
+        .state('classes', {
+            url: "/classes",
+            templateUrl: "views/command/classes.html",
+            controller: 'ClassesController',
+            data: {
+                requiredlogin: true,
+                requiredGM: false
+            }
+        })
+        .state('classe', {
+            url: "/classe/:id",
+            templateUrl: "views/command/classe.html",
+            controller: 'ClasseController',
+            data: {
+                requiredlogin: true,
+                requiredGM: false
+            }
+        })
         .state('gmresearch', {
             url: "/gmresearch",
             templateUrl: "views/research/gm-researches.html",

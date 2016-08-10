@@ -1,0 +1,32 @@
+<div ng-controller="ClasseController" ng-init="initClasse()">
+    <div header></div>
+    <div class="col-lg-12 wow fadeIn" data-wow-duration="2s"
+         style="visibility: visible; animation-duration: 2s; animation-name: fadeIn;">
+
+        <div class="row">
+            <h3 class="page-header classe-header">{{classe.name}}</h3>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-8" ng-repeat="habilidade in classe.abilities">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        {{habilidade.name}}
+                        <div class="pull-right">
+                            Custo: <span ng-repeat="custo in habilidade.cost">{{custo}}&nbsp;</span>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div>
+                            Pré-requistos: <span ng-repeat="prereq in habilidade.prerequisite">{{prereq}}&nbsp;</span>
+                        </div>
+                        <div ng-show="habilidade.cooldown !== ''">
+                            Tempo de recarga: {{habilidade.cooldown}}
+                        </div>
+                        <div>
+                            Descrição: {{habilidade.description}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

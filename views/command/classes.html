@@ -1,0 +1,31 @@
+<div ng-controller="ClassesController" ng-init="initClasses()">
+    <div header></div>
+    <div class="col-lg-12 wow fadeIn" data-wow-duration="2s"
+         style="visibility: visible; animation-duration: 2s; animation-name: fadeIn;">
+
+        <div class="row">
+            <div class="col-lg-3 col-md-6" ng-repeat="classe in classes">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <img class="classe-icon" ng-src="img/{{classe.icon}}.png">
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <h4>{{classe.name}}</h4>
+                                <div>{{classe.abilities.length}} Habilidades</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a ui-sref="classe({id : classe._id.$oid})">
+                        <div class="panel-footer">
+                            <span class="pull-left">Ver detalhes</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
