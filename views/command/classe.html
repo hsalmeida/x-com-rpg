@@ -17,7 +17,7 @@
                     </div>
                     <div class="panel-body">
                         <div>
-                            Pré-requistos: <span ng-repeat="prereq in habilidade.prerequisite">{{prereq}}&nbsp;</span>
+                            Pré-requistos: <span ng-repeat="prereq in habilidade.prerequisites">{{prereq}}&nbsp;</span>
                         </div>
                         <div ng-show="habilidade.cooldown !== ''">
                             Tempo de recarga: {{habilidade.cooldown}}
