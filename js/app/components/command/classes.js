@@ -4,7 +4,7 @@ angular.module('x-com').controller('ClassesController', ['$scope', '$rootScope',
 
         $scope.initClasses = function () {
             waitingCircular.show();
-            Classes.all().then(function (classes) {
+            Classes.all({sort: {"name": 1}}).then(function (classes) {
                 $scope.classes = classes;
                 waitingCircular.hide();
             });
